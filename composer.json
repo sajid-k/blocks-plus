@@ -1,0 +1,21 @@
+{
+    "name": "neo/blocks-plus",
+    "description": "Add More Blocks",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Sajid Khan",
+            "email": "sajid.cs08@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+      "psr-4": {
+        "Inc\\": "./includes"
+      }
+    },
+    "config": {
+        "classmap-authoritative": true
+    }
+}

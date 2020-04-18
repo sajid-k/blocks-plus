@@ -1,0 +1,22 @@
+{
+  "name": "blocks-plus",
+  "version": "1.0.0",
+  "description": "Make more blocks.",
+  "main": "index.js",
+  "keywords": [
+    "blocks",
+    "gutenberg",
+    "gutenberg-blocks",
+    "wordpress-blocks"
+  ],
+  "author": "Sajid Khan",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^8.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "node-sass": "^4.13.1"
+  }
+}
