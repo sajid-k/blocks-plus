@@ -32,7 +32,8 @@ class Enqueue extends Base_Controller {
 			//wp_enqueue_style( 'blocks-plus-js', BLOCKS_PLUS_URL . 'assets/front/js/blocks-plus.js' );
 		}
 
-		wp_enqueue_script( 'blocks-plus-js', BLOCKS_PLUS_URL . 'assets/admin/js/blocks-plus.js', array( 'wp-blocks', 'wp-editor' ) );
+		wp_enqueue_script( 'blocks-plus-js', BLOCKS_PLUS_URL . 'build/index.js', array( 'wp-blocks', 'wp-editor', 'wp-components' ) );
+		// wp_enqueue_script( 'blocks-plus-js', BLOCKS_PLUS_URL . 'assets/admin/js/blocks-plus.js', array( 'wp-blocks', 'wp-editor' ) );
 
 		register_block_type( 'blocks-plus/cta-block', array(
 			'editor_script' => 'blocks-plus-js',
