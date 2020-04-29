@@ -86,6 +86,206 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/blocks/cta/index.js":
+/*!*********************************!*\
+  !*** ./src/blocks/cta/index.js ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$blockEditor = wp.blockEditor,
+    RichText = _wp$blockEditor.RichText,
+    BlockControls = _wp$blockEditor.BlockControls,
+    AlignmentToolbar = _wp$blockEditor.AlignmentToolbar,
+    InspectorControls = _wp$blockEditor.InspectorControls,
+    ColorPalette = _wp$blockEditor.ColorPalette,
+    PanelColorSettings = _wp$blockEditor.PanelColorSettings,
+    MediaUpload = _wp$blockEditor.MediaUpload,
+    MediaUploadCheck = _wp$blockEditor.MediaUploadCheck;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    Button = _wp$components.Button;
+var ALLOWED_MEDIA_TYPES = ['image'];
+registerBlockType('blocks-plus/cta-block', {
+  title: 'Call to Action',
+  description: 'Block to generate a custom Call to Action',
+  icon: 'align-center',
+  category: 'blocks-plus-category',
+  attributes: {
+    title: {
+      type: 'string',
+      source: 'text',
+      selector: 'h2'
+    },
+    content: {
+      type: 'string',
+      source: 'html',
+      selector: 'p'
+    },
+    alignment: {
+      type: 'string'
+    },
+    backgroundImage: {
+      type: 'string',
+      default: null
+    },
+    backgroundColor: {
+      type: 'string'
+    },
+    id: {
+      type: 'number'
+    },
+    alt: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img',
+      attribute: 'alt',
+      default: ''
+    },
+    url: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img',
+      attribute: 'src'
+    }
+  },
+  edit: function edit(props) {
+    var _props$attributes = props.attributes,
+        title = _props$attributes.title,
+        content = _props$attributes.content,
+        backgroundImage = _props$attributes.backgroundImage,
+        alignment = _props$attributes.alignment,
+        backgroundColor = _props$attributes.backgroundColor,
+        setAttributes = props.setAttributes,
+        className = props.className;
+
+    var onChangeContent = function onChangeContent(content) {
+      setAttributes({
+        content: content
+      });
+    };
+
+    var onChangeTitle = function onChangeTitle(title) {
+      setAttributes({
+        title: title
+      });
+    };
+
+    var instructions = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('To edit the background image, you need permission to upload media.', 'image-selector-example'));
+
+    var onSelectImage = function onSelectImage(newImage) {
+      // console.log(newImage);
+      setAttributes({
+        backgroundImage: newImage.sizes.full.url
+      });
+    };
+
+    var onChangeAlignment = function onChangeAlignment(alignment) {
+      setAttributes({
+        alignment: alignment
+      });
+    };
+
+    var onChangeBackgroundColor = function onChangeBackgroundColor(backgroundColor) {
+      setAttributes({
+        backgroundColor: backgroundColor
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className,
+      style: {
+        backgroundImage: "url(".concat(backgroundImage, ")"),
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: backgroundColor
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(AlignmentToolbar, {
+      value: alignment,
+      onChange: onChangeAlignment
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, {
+      style: {
+        marginBottom: '40px'
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelColorSettings, {
+      title: __('Color Settings', 'blocks-plus'),
+      colorSettings: [{
+        value: backgroundColor,
+        onChange: onChangeBackgroundColor,
+        label: __('Block Background Color', 'blocks-plus')
+      }]
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+      title: __('Background Image Settings', 'blocks-plus')
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUploadCheck, {
+      fallback: instructions
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      title: __('Background image', 'blocks-plus'),
+      onSelect: onSelectImage,
+      allowedTypes: ALLOWED_MEDIA_TYPES,
+      value: backgroundImage,
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          onClick: open,
+          className: "button"
+        }, __('Open Media Library', 'blocks-plus'));
+      }
+    })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      tagName: "h2",
+      style: {
+        textAlign: alignment
+      },
+      className: className,
+      onChange: onChangeTitle,
+      value: title,
+      placeholder: __('Title...', 'blocks-plus')
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      tagName: "p",
+      style: {
+        textAlign: alignment
+      },
+      className: className,
+      onChange: onChangeContent,
+      value: content,
+      placeholder: __('Content...', 'blocks-plus')
+    }));
+  },
+  save: function save(props) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: props.className,
+      style: {
+        backgroundImage: "url(".concat(props.attributes.backgroundImage, ")"),
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: props.attributes.backgroundColor
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      style: {
+        textAlign: props.attributes.alignment
+      },
+      tagName: "h2",
+      value: props.attributes.title
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      style: {
+        textAlign: props.attributes.alignment
+      },
+      tagName: "p",
+      value: props.attributes.content
+    }));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -95,154 +295,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_cta__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/cta */ "./src/blocks/cta/index.js");
 
-var registerBlockType = wp.blocks.registerBlockType;
-var _wp$editor = wp.editor,
-    RichText = _wp$editor.RichText,
-    BlockControls = _wp$editor.BlockControls,
-    AlignmentToolbar = _wp$editor.AlignmentToolbar,
-    InspectorControls = _wp$editor.InspectorControls,
-    ColorPalette = _wp$editor.ColorPalette;
-var PanelBody = wp.components.PanelBody;
-registerBlockType('blocks-plus/cta-block', {
-  title: 'Call to Action',
-  description: 'This is some description',
-  icon: 'align-center',
-  category: 'layout',
-  attributes: {
-    title: {
-      type: 'string',
-      source: 'text',
-      selector: 'h2,h3,h4,h5,h6'
-    },
-    titleStyle: {
-      type: 'object',
-      default: {
-        color: 'black',
-        textAlign: 'left'
-      }
-    },
-    // content: {
-    // 	type: 'array',
-    // 	source: 'children',
-    // 	selector: 'p',
-    // },
-    content: {
-      type: 'string',
-      source: 'html',
-      selector: 'p'
-    },
-    contentStyle: {
-      type: 'object',
-      default: {
-        color: 'black',
-        textAlign: 'left'
-      }
-    }
-  },
-  edit: function edit(props) {
-    var _props$attributes = props.attributes,
-        title = _props$attributes.title,
-        content = _props$attributes.content,
-        titleStyle = _props$attributes.titleStyle,
-        contentStyle = _props$attributes.contentStyle,
-        setAttributes = props.setAttributes,
-        className = props.className;
-
-    var onChangeContent = function onChangeContent(newContent) {
-      setAttributes({
-        content: newContent
-      });
-    };
-
-    var onChangeTitle = function onChangeTitle(newTitle) {
-      setAttributes({
-        title: newTitle
-      });
-    };
-
-    var onChangeAlignment = function onChangeAlignment(newAlignment) {
-      var alignmentValue = newAlignment === undefined ? 'none' : newAlignment;
-      setAttributes({
-        titleStyle: {
-          color: titleStyle.color,
-          textAlign: alignmentValue
-        },
-        contentStyle: {
-          color: contentStyle.color,
-          textAlign: alignmentValue
-        }
-      });
-    };
-
-    var onChangeContentColor = function onChangeContentColor(newColor) {
-      var newColorValue = newColor === undefined ? 'none' : newColor;
-      setAttributes({
-        contentStyle: {
-          color: newColorValue,
-          textAlign: contentStyle.textAlign
-        }
-      });
-    };
-
-    var onChangeTitleColor = function onChangeTitleColor(newColor) {
-      var newColorValue = newColor === undefined ? 'none' : newColor;
-      setAttributes({
-        titleStyle: {
-          color: newColorValue,
-          textAlign: titleStyle.textAlign
-        }
-      });
-    };
-
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(AlignmentToolbar, {
-      value: contentStyle.textAlign,
-      onChange: onChangeAlignment
-    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, {
-      style: {
-        marginBottom: '40px'
-      }
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
-      title: ('Font Color Settings', 'blocks-plus')
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Select a Title Color")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
-      onChange: onChangeTitleColor // onChange event callback
-
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Select a Content Color")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette // Element Tag for Gutenberg standard colour selector
-    , {
-      onChange: onChangeContentColor // onChange event callback
-
-    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
-      tagName: "h2",
-      style: titleStyle,
-      className: className,
-      onChange: onChangeTitle,
-      value: title,
-      placeholder: "Title..."
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
-      tagName: "p",
-      style: contentStyle,
-      className: className,
-      onChange: onChangeContent,
-      value: content,
-      placeholder: "Content..."
-    }));
-  },
-  save: function save(props) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-      className: props.className
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
-      style: props.attributes.titleStyle,
-      tagName: "h2",
-      value: props.attributes.title
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
-      style: props.attributes.contentStyle,
-      tagName: "p",
-      value: props.attributes.content
-    }));
-  }
-});
 
 /***/ }),
 

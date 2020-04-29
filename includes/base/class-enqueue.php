@@ -11,12 +11,11 @@
 
 namespace Inc\base;
 
-use \Inc\base\Base_Controller;
-
-class Enqueue extends Base_Controller {
+class Enqueue {
 
 	public function register() {
 		add_action( 'init', array( $this, 'enqueue' ) );
+		add_filter( 'block_categories', array( $this, 'blocks_plus_categories' ), 10, 2 );
 	}
 
 	function enqueue() {
@@ -32,13 +31,36 @@ class Enqueue extends Base_Controller {
 			//wp_enqueue_style( 'blocks-plus-js', BLOCKS_PLUS_URL . 'assets/front/js/blocks-plus.js' );
 		}
 
-		wp_enqueue_script( 'blocks-plus-js', BLOCKS_PLUS_URL . 'build/index.js', array( 'wp-blocks', 'wp-editor', 'wp-components' ) );
+		wp_enqueue_script(
+			'blocks-plus-js',
+			BLOCKS_PLUS_URL . 'build/index.js',
+			array(
+				'wp-blocks',
+				'wp-block-editor',
+				'wp-components',
+				'wp-i18n',
+			),
+			'1.1.1'
+		);
 		// wp_enqueue_script( 'blocks-plus-js', BLOCKS_PLUS_URL . 'assets/admin/js/blocks-plus.js', array( 'wp-blocks', 'wp-editor' ) );
 
 		register_block_type( 'blocks-plus/cta-block', array(
 			'editor_script' => 'blocks-plus-js',
 		) );
 
+	}
+
+	function blocks_plus_categories( $categories, $post ) {
+		return array_merge(
+			$categories,
+			array(
+				array(
+					'slug'  => 'blocks-plus-category',
+					'title' => __( 'Blocks Plus', 'blocks-plus' ),
+					'icon'  => 'screenoptions',
+				),
+			)
+		);
 	}
 
 }
